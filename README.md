@@ -109,6 +109,9 @@ git push
   5 個檔案（含 `404.html` 共 6 個）都要一起改，否則會不一致。
 - **換圖片**：把新圖放進 `resources/_img/` 對應資料夾，再改 HTML 裡的 `src` 路徑。
 - **`CNAME` 和 `.nojekyll` 不要刪**。刪了網域會失效、圖片會全部破圖。
+- **`resources/js/loader-failsafe.js` 不要刪。** 開場動畫的遮罩 `#my-loader` 是
+  `z-index: 9999` 的全螢幕蓋板，原本只有 Lottie 動畫播完才會收起；一旦沒收起，
+  整站每一個連結和按鈕都會點不動。這支程式是逾時強制收起的保險。
 - **改到 `contact-form.js` 時，記得把 `contact/index.html` 裡的 `?v=2` 數字加 1。**
   GitHub Pages 會叫瀏覽器快取 JS 十分鐘，不換版本號的話，
   回訪的人會繼續用舊版，你會以為改的東西沒生效。
