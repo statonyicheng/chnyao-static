@@ -72,8 +72,8 @@
 
 **建議改用 Formspree**，使用者按送出就直接寄到公司信箱，體驗最好：
 
-1. 到 https://formspree.io 用 `cyler.chung@chnyaoind.com` 註冊（免費方案每月 50 封）
-2. 建立 New Form，收件信箱填 `cyler.chung@chnyaoind.com`
+1. 到 https://formspree.io 用 `cyler.chung@chnyaoind.com.tw` 註冊（免費方案每月 50 封）
+2. 建立 New Form，收件信箱填 `cyler.chung@chnyaoind.com.tw`
 3. 它會給一段像 `https://formspree.io/f/abcdwxyz` 的網址
 4. 打開 `resources/js/contact-form.js`，把網址貼進第一行設定：
 

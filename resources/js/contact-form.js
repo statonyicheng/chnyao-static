@@ -13,8 +13,8 @@
  *   他只要按寄出即可。零設定、馬上能用，但使用者需要有設定好的郵件軟體。
  *
  * 【建議做法】改用 Formspree，使用者按送出就直接寄到公司信箱，體驗最好：
- *   1. 到 https://formspree.io 用 cyler.chung@chnyaoind.com 註冊（免費方案每月 50 封）
- *   2. 建立一個 New Form，收件信箱填 cyler.chung@chnyaoind.com
+ *   1. 到 https://formspree.io 用 cyler.chung@chnyaoind.com.tw 註冊（免費方案每月 50 封）
+ *   2. 建立一個 New Form，收件信箱填 cyler.chung@chnyaoind.com.tw
  *   3. 它會給你一段像 https://formspree.io/f/abcdwxyz 的網址
  *   4. 把那段網址貼到下面 FORM_ENDPOINT 的引號中間，存檔、推上 GitHub 即可
  *
@@ -23,8 +23,8 @@
 
 var FORM_ENDPOINT = '';
 
-// 收信信箱（郵件軟體模式會寄到這裡；沿用原後台「聯絡我們 - 轉信信箱」的設定）
-var FORM_MAILTO = 'cyler.chung@chnyaoind.com';
+// 收信信箱（郵件軟體模式與表單服務都會寄到這裡）
+var FORM_MAILTO = 'cyler.chung@chnyaoind.com.tw';
 
 // ----------------------------------------------------------------------------
 
