@@ -109,6 +109,9 @@ git push
   5 個檔案（含 `404.html` 共 6 個）都要一起改，否則會不一致。
 - **換圖片**：把新圖放進 `resources/_img/` 對應資料夾，再改 HTML 裡的 `src` 路徑。
 - **`CNAME` 和 `.nojekyll` 不要刪**。刪了網域會失效、圖片會全部破圖。
+- **改到 `contact-form.js` 時，記得把 `contact/index.html` 裡的 `?v=2` 數字加 1。**
+  GitHub Pages 會叫瀏覽器快取 JS 十分鐘，不換版本號的話，
+  回訪的人會繼續用舊版，你會以為改的東西沒生效。
 - 路徑一律用 `/` 開頭的絕對路徑（例如 `/resources/css/style.css`），不要改成相對路徑。
 
 ---
