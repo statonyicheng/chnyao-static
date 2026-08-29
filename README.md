@@ -55,7 +55,7 @@
 | 後台 `/admin` | 可登入改內容 | ❌ **已移除**，改內容要直接編輯 HTML 檔 |
 | 資料庫 MySQL | 存 Banner、頁面、聯絡紀錄 | ❌ 不再需要 |
 | 首頁 Banner 輪播 | 後台可換圖、加多張 | 內容已寫死在 `index.html`（目前一張，就是原網站上線中的那張） |
-| 聯絡表單 | 存進資料庫並寄信 | ⚠️ 改用前端送出，**需設定一次**，見下方說明 |
+| 聯絡表單 | 存進資料庫並寄信 | 改用 Formspree 寄信，不再留存資料庫紀錄，見下方說明 |
 | 表單驗證碼 | Google reCAPTCHA | 改用隱藏的蜜罐欄位擋機器人 |
 | 主機費用 | 需付費 PHP 主機 | **免費** |
 
@@ -64,24 +64,28 @@
 
 ---
 
-## ⚠️ 聯絡表單需要設定一次
+## 聯絡表單
 
-目前表單是「**開啟郵件軟體**」模式：使用者按送出後，會開啟他電腦的郵件軟體，
-收件人、主旨、內容都已填好，他按寄出即可。**不用設定，現在就能用**，
-但如果對方電腦沒設定郵件軟體就會沒反應。
+已接上 **Formspree**：訪客按送出，內容直接寄到 `cyler.chung@chnyaoind.com.tw`。
 
-**建議改用 Formspree**，使用者按送出就直接寄到公司信箱，體驗最好：
+| 項目 | 說明 |
+|---|---|
+| 服務 | [Formspree](https://formspree.io/forms)（帳號 YICHENG ZENG） |
+| 端點 | `https://formspree.io/f/xqpkkrye` |
+| 收件信箱 | `cyler.chung@chnyaoind.com.tw` |
+| 免費額度 | 每月 50 封，超過當月不再轉寄 |
+| 防機器人 | 隱藏的蜜罐欄位 `company_website` + Formspree 內建過濾 |
 
-1. 到 https://formspree.io 用 `cyler.chung@chnyaoind.com.tw` 註冊（免費方案每月 50 封）
-2. 建立 New Form，收件信箱填 `cyler.chung@chnyaoind.com.tw`
-3. 它會給一段像 `https://formspree.io/f/abcdwxyz` 的網址
-4. 打開 `resources/js/contact-form.js`，把網址貼進第一行設定：
+### 要改設定時
 
-   ```js
-   var FORM_ENDPOINT = 'https://formspree.io/f/abcdwxyz';
-   ```
+- **換收件信箱**：到 Formspree 後台改該表單的 recipient，程式不用動。
+  （順手把 `resources/js/contact-form.js` 的 `FORM_MAILTO` 一起改，那是送出失敗時的提示文字。）
+- **換表單服務**：改 `resources/js/contact-form.js` 開頭的 `FORM_ENDPOINT`。
+- **停用 Formspree**：把 `FORM_ENDPOINT` 改回空字串 `''`，
+  表單會自動退回「開啟訪客電腦郵件軟體」的模式，仍可運作。
 
-5. 存檔 → `git commit` → `git push`，約 1 分鐘後生效
+> ⚠️ 表單送出的內容**只會寄信，不會留在網站上**。
+> 需要保存詢問紀錄的話，請自行在信箱建立標籤或轉存。
 
 ---
 

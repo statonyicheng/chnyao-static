@@ -5,23 +5,20 @@
  * 所以改由這支程式處理送出。
  *
  * ┌─────────────────────────────────────────────────────────────────────────┐
- * │ 要設定的只有下面這一行 FORM_ENDPOINT                                     │
+ * │ 目前使用 Formspree，訪客按送出就直接寄到 FORM_MAILTO 的信箱               │
  * └─────────────────────────────────────────────────────────────────────────┘
  *
- * 【目前狀態】FORM_ENDPOINT 是空字串 → 使用「開啟郵件軟體」模式。
- *   使用者按送出後，會自動開啟他電腦的郵件軟體，收件人、主旨、內容都已填好，
- *   他只要按寄出即可。零設定、馬上能用，但使用者需要有設定好的郵件軟體。
+ * 【現況】FORM_ENDPOINT 已設定為 Formspree 表單網址。
+ *   免費方案每月 50 封。用量與收件紀錄可到 https://formspree.io/forms 查看。
  *
- * 【建議做法】改用 Formspree，使用者按送出就直接寄到公司信箱，體驗最好：
- *   1. 到 https://formspree.io 用 cyler.chung@chnyaoind.com.tw 註冊（免費方案每月 50 封）
- *   2. 建立一個 New Form，收件信箱填 cyler.chung@chnyaoind.com.tw
- *   3. 它會給你一段像 https://formspree.io/f/abcdwxyz 的網址
- *   4. 把那段網址貼到下面 FORM_ENDPOINT 的引號中間，存檔、推上 GitHub 即可
+ * 【要換收件信箱】到 Formspree 後台改該表單的 recipient，這支程式不用動。
+ *   （下面的 FORM_MAILTO 只用於送出失敗時的提示文字，記得一起改。）
  *
- *   例：var FORM_ENDPOINT = 'https://formspree.io/f/abcdwxyz';
+ * 【要停用 Formspree】把 FORM_ENDPOINT 改回空字串 ''，
+ *   表單會自動退回「開啟訪客電腦的郵件軟體」模式，仍可運作。
  * ========================================================================== */
 
-var FORM_ENDPOINT = '';
+var FORM_ENDPOINT = 'https://formspree.io/f/xqpkkrye';
 
 // 收信信箱（郵件軟體模式與表單服務都會寄到這裡）
 var FORM_MAILTO = 'cyler.chung@chnyaoind.com.tw';
