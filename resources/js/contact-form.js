@@ -175,9 +175,16 @@ var FORM_MAILTO = 'cyler.chung@chnyaoind.com.tw';
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        // 蜜罐欄位有值 = 機器人填的，安靜地不處理
-        var honeypot = form.querySelector('[name="company_website"]');
-        if (honeypot && honeypot.value !== '') return;
+        // 這裡原本有一個隱藏的蜜罐欄位 company_website，有值就判定為機器人並靜靜丟棄。
+        // 實測發現 Chrome 的自動填入會連同這個隱藏欄位一起填（autocomplete="off"
+        // 對 Chrome 沒有約束力），導致真人送出時每次都被誤判、而且毫無提示——
+        // 使用者只會覺得「按了沒反應」。
+        //
+        // 擋掉真實客戶詢問的代價，遠高於放過一些垃圾訊息，因此移除這道判斷，
+        // 改由 Formspree 自身的垃圾訊息過濾負責。
+        //
+        // 若日後真的需要自建防機器人機制，不要用會被自動填入的 text 欄位，
+        // 並且無論如何都不要「安靜地」丟棄送出。
 
         var firstInvalid = validateForm();
         if (firstInvalid) {
